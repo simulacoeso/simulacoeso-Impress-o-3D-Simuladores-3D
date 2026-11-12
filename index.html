@@ -167,8 +167,8 @@
           </div>
         </div>
         <div class="hero-img">
-          <!-- COLOCA AQUI A TUA FOTO PRINCIPAL (ex: img/hero.jpg) -->
-          <img src="https://images.unsplash.com/photo-1631376000-e1ccd2b3bbd7?auto=format&fit=crop&w=900&q=75" alt="Peças impressas em 3D" width="900" height="675" onerror="this.style.display='none'">
+          <!-- FOTO PRINCIPAL: Confirma se o nome é exatamente igual ao do GitHub -->
+          <img src="img/hero.jpg" alt="Peças impressas em 3D" width="900" height="675" onerror="this.style.display='none'">
         </div>
       </div>
     </section>
@@ -226,25 +226,24 @@
         <h2>Alguns trabalhos</h2>
         <p class="section-intro">Exemplos de peças já impressas.</p>
         <div class="gallery">
-          <!-- SUBSTITUI PELOS TEUS FICHEIROS (ex: img/suporte.jpg) -->
           <figure>
-            <img loading="lazy" src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=600&q=75" alt="Suporte para tubos de ensaio" onerror="this.style.display='none'">
+            <img loading="lazy" src="img/suporte.jpg" alt="Suporte para tubos de ensaio" onerror="this.style.display='none'">
             <figcaption>Suporte para tubos</figcaption>
           </figure>
           <figure>
-            <img loading="lazy" src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=600&q=75" alt="Geco articulado" onerror="this.style.display='none'">
+            <img loading="lazy" src="img/geco.jpg" alt="Geco articulado" onerror="this.style.display='none'">
             <figcaption>Geco articulado</figcaption>
           </figure>
           <figure>
-            <img loading="lazy" src="https://images.unsplash.com/photo-1615286922420-c6b348ffd5d3?auto=format&fit=crop&w=600&q=75" alt="Carro vermelho" onerror="this.style.display='none'">
+            <img loading="lazy" src="img/carro.jpg" alt="Carro vermelho" onerror="this.style.display='none'">
             <figcaption>Carro vermelho</figcaption>
           </figure>
           <figure>
-            <img loading="lazy" src="https://images.unsplash.com/photo-1563207153-f403bf289096?auto=format&fit=crop&w=600&q=75" alt="Gato branco" onerror="this.style.display='none'">
+            <img loading="lazy" src="img/gato.jpg" alt="Gato branco" onerror="this.style.display='none'">
             <figcaption>Gato branco</figcaption>
           </figure>
           <figure>
-            <img loading="lazy" src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=600&q=75" alt="Robô articulado" onerror="this.style.display='none'">
+            <img loading="lazy" src="img/robo.jpg" alt="Robô articulado" onerror="this.style.display='none'">
             <figcaption>Boneco robô</figcaption>
           </figure>
         </div>
@@ -257,8 +256,8 @@
         <p class="section-intro" style="text-align: center; margin-inline: auto;">Conta-me o que precisas. Respondo normalmente em 24 horas.</p>
 
         <div class="form-wrap">
-          <!-- ATENÇÃO: Substitui SEU_ID pelo ID que o Formspree te der -->
-          <form id="orderForm" action="https://formspree.io/f/SEU_ID" method="POST" novalidate>
+          <!-- AQUI ESTÁ O TEU ID DO FORMSPREE: mdegklzo -->
+          <form id="orderForm" action="https://formspree.io/f/mdegklzo" method="POST" novalidate>
 
             <div class="field">
               <label for="nome">Nome</label>
@@ -343,7 +342,7 @@
     const btn = document.getElementById('submitBtn');
 
     function showMsg(text, ok) {
-      msg.innerHTML = text; // Mudamos para innerHTML para permitir links na mensagem
+      msg.innerHTML = text; 
       msg.className = 'form-msg ' + (ok ? 'ok' : 'fail');
     }
 
@@ -366,16 +365,6 @@
 
       btn.disabled = true;
       btn.textContent = 'A enviar…';
-
-      if (form.action.includes('SEU_ID')) {
-        setTimeout(() => {
-          showMsg('Pedido enviado (simulação).<br><br><strong>Não te esqueças:</strong> Se for uma peça personalizada, envia o teu ficheiro para <a href="mailto:simulacoeso@gmail.com">simulacoeso@gmail.com</a>.', true);
-          form.reset();
-          btn.disabled = false;
-          btn.textContent = 'Pedir orçamento';
-        }, 700);
-        return;
-      }
 
       try {
         const res = await fetch(form.action, {
