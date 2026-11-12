@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Engenho 3D | Peças Técnicas, Brinquedos e Projetos à Medida</title>
+  <meta name="description" content="Impressão 3D em PETG e PLA: peças técnicas para laboratório, modelos articulados e projetos personalizados. Preços a partir de 0,10 €/g.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #F8F9FA;
+      --surface: #FFFFFF;
+      --text: #333333;
+      --muted: #6B7280;
+      --accent: #0D9488; 
+      --accent-dark: #0B7A70;
+      --accent-soft: #E6F4F2;
+      --line: #E5E7EB;
+      --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --radius: 12px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body { margin: 0; font-family: var(--font); color: var(--text); background: var(--bg); line-height: 1.6; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    h1, h2, h3 { line-height: 1.15; margin: 0 0 .5em; letter-spacing: -0.02em; }
+    h1 { font-size: clamp(2.1rem, 7vw, 3.6rem); font-weight: 800; }
+    h2 { font-size: clamp(1.6rem, 4.5vw, 2.3rem); font-weight: 800; }
+    h3 { font-size: 1.15rem; font-weight: 600; }
+    p { margin: 0 0 1em; }
+    .container { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+    section { padding: 4rem 0; }
+    .section-intro { color: var(--muted); max-width: 60ch; margin-bottom: 2rem; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+    .btn {
+      display: inline-block; padding: .85rem 1.5rem; border-radius: 999px; border: 0;
+      background: var(--accent); color: #fff; font: 600 1rem var(--font);
+      text-decoration: none; cursor: pointer; transition: background .2s, transform .2s;
+    }
+    .btn:hover { background: var(--accent-dark); transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--accent); box-shadow: inset 0 0 0 2px var(--accent); }
+    .btn-ghost:hover { background: var(--accent-soft); }
+    
+    .btn-outline-white { background: transparent; color: #fff; box-shadow: inset 0 0 0 2px #fff; margin-top: 1rem; }
+    .btn-outline-white:hover { background: rgba(255,255,255,0.1); }
+
+    .site-header { position: sticky; top: 0; z-index: 50; background: rgba(248,249,250,.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 64px; }
+    .logo { font-weight: 800; font-size: 1.2rem; text-decoration: none; letter-spacing: -0.02em; }
+    .logo span { color: var(--accent); }
+    .menu { display: none; list-style: none; margin: 0; padding: 0; }
+    .menu a { text-decoration: none; font-weight: 500; }
+    .menu a:not(.btn):hover { color: var(--accent); }
+    .menu .btn { padding: .6rem 1.2rem; font-size: .95rem; color: #fff; }
+    .burger { background: none; border: 0; padding: .5rem; cursor: pointer; }
+    .burger span { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; transition: transform .25s, opacity .25s; }
+    .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .menu.open { display: flex; flex-direction: column; gap: 1rem; position: absolute; top: 64px; left: 0; right: 0; padding: 1.25rem; background: var(--surface); border-bottom: 1px solid var(--line); }
+
+    .hero {
+      padding: 3.5rem 0 4rem;
+      background: repeating-linear-gradient(0deg, transparent 0 11px, rgba(13,148,136,.07) 11px 12px), var(--bg);
+    }
+    .hero-grid { display: grid; gap: 2.5rem; align-items: center; }
+    .hero p.lead { font-size: 1.15rem; color: var(--muted); max-width: 52ch; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+    .hero-img { border-radius: var(--radius); overflow: hidden; aspect-ratio: 4/3; background: var(--accent-soft); box-shadow: 0 20px 40px -20px rgba(0,0,0,.3); }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .cards { display: grid; gap: 1.25rem; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.75rem; }
+    .card-icon { width: 48px; height: 48px; border-radius: 10px; background: var(--accent-soft); display: grid; place-items: center; font-size: 1.5rem; margin-bottom: 1rem; }
+    .card p { color: var(--muted); margin: 0; }
+
+    .pricing { background: var(--surface); border-block: 1px solid var(--line); }
+    .price-box { background: var(--accent); color: #fff; border-radius: var(--radius); padding: 1.75rem; margin-bottom: 2rem; text-align: center; }
+    .price-box strong { font-size: 1.6rem; display: block; margin-bottom: 0.5rem;}
+    .price-box p { margin: 0; opacity: .95; }
+    .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; counter-reset: step; }
+    .steps li { counter-increment: step; padding-left: 3.5rem; position: relative; }
+    .steps li::before { content: counter(step); position: absolute; left: 0; top: 0; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--accent-soft); color: var(--accent-dark); font-weight: 800; display: grid; place-items: center; }
+    .steps p { color: var(--muted); margin: 0; }
+
+    .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; }
+    .gallery figure { margin: 0; border-radius: var(--radius); overflow: hidden; background: var(--accent-soft); aspect-ratio: 1; position: relative; }
+    .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+    .gallery figure:hover img { transform: scale(1.04); }
+    .gallery figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: .6rem .8rem; color: #fff; font-size: .9rem; font-weight: 500; background: linear-gradient(transparent, rgba(0,0,0,.65)); }
+
+    .form-wrap { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.5rem; max-width: 680px; margin: 0 auto; }
+    .field { margin-bottom: 1.1rem; }
+    label { display: block; font-weight: 600; font-size: .95rem; margin-bottom: .35rem; }
+    label small { font-weight: 400; color: var(--muted); }
+    input, select, textarea {
+      width: 100%; padding: .8rem .9rem; font: 400 1rem var(--font); color: var(--text);
+      border: 1.5px solid #D1D5DB; border-radius: 8px; background: #fff;
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+    textarea { min-height: 130px; resize: vertical; }
+    .field.invalid input, .field.invalid select, .field.invalid textarea { border-color: #DC2626; }
+    .error { display: none; color: #B91C1C; font-size: .85rem; margin-top: .3rem; }
+    .field.invalid .error { display: block; }
+    .hp { position: absolute; left: -9999px; }
+    .form-msg { display: none; margin-top: 1rem; padding: 1rem; border-radius: 8px; font-weight: 500; text-align: center; }
+    .form-msg.ok { display: block; background: #DCFCE7; color: #166534; border: 1px solid #86EFAC; }
+    .form-msg.fail { display: block; background: #FEE2E2; color: #991B1B; border: 1px solid #FCA5A5; }
+    
+    .alt-contact { margin-top: 2rem; text-align: center; color: var(--muted); font-size: .95rem; background: var(--surface); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--line); max-width: 680px; margin-inline: auto; }
+    .alt-contact a { color: var(--accent-dark); font-weight: 600; font-size: 1.1rem;}
+
+    footer { padding: 2rem 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; background: var(--surface); }
+    .foot { display: flex; flex-direction: column; gap: .5rem; }
+    footer a { color: var(--accent-dark); font-weight: 500; }
+
+    @media (min-width: 720px) {
+      .cards { grid-template-columns: repeat(3, 1fr); }
+      .steps { grid-template-columns: repeat(3, 1fr); }
+      .gallery { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+      .foot { flex-direction: row; justify-content: space-between; }
+      .form-wrap { padding: 2.25rem; }
+    }
+    @media (min-width: 860px) {
+      .burger { display: none; }
+      .menu { display: flex; align-items: center; gap: 1.75rem; }
+      .hero-grid { grid-template-columns: 1.1fr .9fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="container nav" aria-label="Navegação principal">
+      <a href="#topo" class="logo">Engenho <span>3D</span></a>
+
+      <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="menu" id="menu">
+        <li><a href="#categorias">O que faço</a></li>
+        <li><a href="#como-funciona">Preços</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#encomenda" class="btn">Fazer Encomenda</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="topo">
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <h1>Impressão 3D: Da engenharia aos brinquedos.</h1>
+          <p class="lead">Peças técnicas para laboratório, modelos articulados e projetos personalizados. Qualidade profissional a preços acessíveis.</p>
+          <div class="hero-actions">
+            <a href="#encomenda" class="btn">Pedir orçamento grátis</a>
+            <a href="#galeria" class="btn btn-ghost">Ver trabalhos</a>
+          </div>
+        </div>
+        <div class="hero-img">
+          <!-- COLOCA AQUI A TUA FOTO PRINCIPAL (ex: img/hero.jpg) -->
+          <img src="https://images.unsplash.com/photo-1631376000-e1ccd2b3bbd7?auto=format&fit=crop&w=900&q=75" alt="Peças impressas em 3D" width="900" height="675" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </section>
+
+    <section id="categorias">
+      <div class="container">
+        <h2>O que faço</h2>
+        <p class="section-intro">Três tipos de trabalho, todos impressos com o mesmo cuidado.</p>
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🧪</div>
+            <h3>Peças técnicas e laboratoriais</h3>
+            <p>Suportes para tubos de ensaio e Eppendorfs, organizadores e peças funcionais. Pensadas por quem trabalha com engenharia química.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🐉</div>
+            <h3>Modelos articulados e brinquedos</h3>
+            <p>Dragões, gecos, robôs e carrinhos que se mexem logo a sair da impressora, sem montagem.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">📐</div>
+            <h3>Projetos personalizados</h3>
+            <p>Tens um ficheiro STL ou precisas de uma peça à medida? Envia-me e eu imprimo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona" class="pricing">
+      <div class="container">
+        <h2>Como funciona</h2>
+        <div class="price-box">
+          <strong>Desde 0,10 € por grama</strong>
+          <p>O preço depende do peso e da complexidade da peça. Imprimo em PETG e PLA.</p>
+        </div>
+        <ol class="steps">
+          <li>
+            <h3>1. Pedes o orçamento</h3>
+            <p>Preenches o formulário abaixo ou envias email direto.</p>
+          </li>
+          <li>
+            <h3>2. Envias o ficheiro</h3>
+            <p>Respondo rapidamente por email. Se for personalizado, envias-me o ficheiro STL/CAD por essa via.</p>
+          </li>
+          <li>
+            <h3>3. Imprimo e entrego</h3>
+            <p>Depois de confirmares o valor, imprimo a peça e envio ou combinamos a entrega.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="galeria">
+      <div class="container">
+        <h2>Alguns trabalhos</h2>
+        <p class="section-intro">Exemplos de peças já impressas.</p>
+        <div class="gallery">
+          <!-- SUBSTITUI PELOS TEUS FICHEIROS (ex: img/suporte.jpg) -->
+          <figure>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=600&q=75" alt="Suporte para tubos de ensaio" onerror="this.style.display='none'">
+            <figcaption>Suporte para tubos</figcaption>
+          </figure>
+          <figure>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1612815154858-60aa4c59eaa6?auto=format&fit=crop&w=600&q=75" alt="Geco articulado" onerror="this.style.display='none'">
+            <figcaption>Geco articulado</figcaption>
+          </figure>
+          <figure>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1615286922420-c6b348ffd5d3?auto=format&fit=crop&w=600&q=75" alt="Carro vermelho" onerror="this.style.display='none'">
+            <figcaption>Carro vermelho</figcaption>
+          </figure>
+          <figure>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1563207153-f403bf289096?auto=format&fit=crop&w=600&q=75" alt="Gato branco" onerror="this.style.display='none'">
+            <figcaption>Gato branco</figcaption>
+          </figure>
+          <figure>
+            <img loading="lazy" src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?auto=format&fit=crop&w=600&q=75" alt="Robô articulado" onerror="this.style.display='none'">
+            <figcaption>Boneco robô</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="encomenda" style="background: var(--accent-soft);">
+      <div class="container">
+        <h2 style="text-align: center;">Pede o teu orçamento</h2>
+        <p class="section-intro" style="text-align: center; margin-inline: auto;">Conta-me o que precisas. Respondo normalmente em 24 horas.</p>
+
+        <div class="form-wrap">
+          <!-- ATENÇÃO: Substitui SEU_ID pelo ID que o Formspree te der -->
+          <form id="orderForm" action="https://formspree.io/f/SEU_ID" method="POST" novalidate>
+
+            <div class="field">
+              <label for="nome">Nome</label>
+              <input type="text" id="nome" name="nome" autocomplete="name" required>
+              <div class="error">Indica o teu nome.</div>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+              <div class="error">Indica um email válido.</div>
+            </div>
+
+            <div class="field">
+              <label for="tipo">Tipo de peça</label>
+              <select id="tipo" name="tipo" required>
+                <option value="">Escolhe uma opção</option>
+                <option>Técnica / Laboratório</option>
+                <option>Brinquedo articulado</option>
+                <option>Personalizado (tenho ficheiro STL/CAD)</option>
+              </select>
+              <div class="error">Escolhe o tipo de peça.</div>
+            </div>
+
+            <div class="field">
+              <label for="mensagem">Mensagem</label>
+              <textarea id="mensagem" name="mensagem" required placeholder="Descreve a peça, o tamanho, a cor e a quantidade. Se for personalizado, diz-me que tipo de ficheiro tens."></textarea>
+              <div class="error">Descreve o que precisas.</div>
+            </div>
+
+            <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <button type="submit" class="btn" id="submitBtn" style="width: 100%;">Pedir orçamento</button>
+            <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+
+        <div class="alt-contact">
+          <p style="margin-bottom: 0.5rem; font-weight: 600; color: var(--text);">Já tens o ficheiro pronto?</p>
+          <p style="margin-bottom: 1rem;">Envia o teu email com o ficheiro anexado (STL, STEP, etc.) diretamente para:</p>
+          <a href="mailto:simulacoeso@gmail.com?subject=Orçamento%20Engenho%203D&body=Ol%C3%A1%2C%20gostaria%20de%20um%20or%C3%A7amento%20para%20uma%20impress%C3%A3o%203D.%20Segue%20o%20ficheiro%20em%20anexo." class="btn btn-outline-white" style="color: var(--accent-dark); box-shadow: inset 0 0 0 2px var(--accent); background: transparent;">
+            simulacoeso@gmail.com
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <span>© <span id="year"></span> Engenho 3D. Todos os direitos reservados.</span>
+      <span>Feito por <a href="https://github.com/simulacoeso" target="_blank" rel="noopener">Simuladores & 3D</a></span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('menu');
+
+    function setMenu(open) {
+      menu.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      burger.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    }
+    burger.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setMenu(false);
+      });
+    });
+
+    const form = document.getElementById('orderForm');
+    const msg = document.getElementById('formMsg');
+    const btn = document.getElementById('submitBtn');
+
+    function showMsg(text, ok) {
+      msg.innerHTML = text; // Mudamos para innerHTML para permitir links na mensagem
+      msg.className = 'form-msg ' + (ok ? 'ok' : 'fail');
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      msg.className = 'form-msg';
+
+      let valid = true;
+      form.querySelectorAll('[required]').forEach(input => {
+        const ok = input.type === 'email'
+          ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim())
+          : input.value.trim() !== '';
+        input.closest('.field').classList.toggle('invalid', !ok);
+        if (!ok) valid = false;
+      });
+      if (!valid) {
+        form.querySelector('.invalid input, .invalid select, .invalid textarea').focus();
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'A enviar…';
+
+      if (form.action.includes('SEU_ID')) {
+        setTimeout(() => {
+          showMsg('Pedido enviado (simulação).<br><br><strong>Não te esqueças:</strong> Se for uma peça personalizada, envia o teu ficheiro para <a href="mailto:simulacoeso@gmail.com">simulacoeso@gmail.com</a>.', true);
+          form.reset();
+          btn.disabled = false;
+          btn.textContent = 'Pedir orçamento';
+        }, 700);
+        return;
+      }
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          showMsg('<strong>Pedido enviado com sucesso!</strong><br>Vou responder em breve.<br><br>Se a tua peça for personalizada, <strong>envia agora o ficheiro (STL/CAD) para <a href="mailto:simulacoeso@gmail.com">simulacoeso@gmail.com</a></strong>.', true);
+          form.reset();
+        } else {
+          showMsg('Não foi possível enviar o formulário. Tenta de novo ou envia email para <a href="mailto:simulacoeso@gmail.com">simulacoeso@gmail.com</a>.', false);
+        }
+      } catch (err) {
+        showMsg('Erro de ligação. Tenta de novo ou envia email para <a href="mailto:simulacoeso@gmail.com">simulacoeso@gmail.com</a>.', false);
+      }
+      btn.disabled = false;
+      btn.textContent = 'Pedir orçamento';
+    });
+
+    form.addEventListener('input', e => {
+      const f = e.target.closest('.field');
+        if (f) f.classList.remove('invalid');
+    });
+  </script>
+</body>
+</html>
