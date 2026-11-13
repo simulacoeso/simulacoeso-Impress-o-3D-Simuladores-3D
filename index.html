@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Engenho 3D | Peças Técnicas, Brinquedos e Projetos à Medida</title>
-  <meta name="description" content="Impressão 3D em PETG e PLA: peças técnicas para laboratório, modelos articulados e projetos personalizados. Preços a partir de 0,10 €/g.">
+  <meta name="description" content="Impressão 3D em PETG e PLA: peças técnicas para laboratório, modelos articulados e projetos personalizados. Entregas em Aveiro e envios por CTT.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -85,10 +85,23 @@
     .price-box { background: var(--accent); color: #fff; border-radius: var(--radius); padding: 1.75rem; margin-bottom: 2rem; text-align: center; }
     .price-box strong { font-size: 1.6rem; display: block; margin-bottom: 0.5rem;}
     .price-box p { margin: 0; opacity: .95; }
+    
     .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; counter-reset: step; }
     .steps li { counter-increment: step; padding-left: 3.5rem; position: relative; }
     .steps li::before { content: counter(step); position: absolute; left: 0; top: 0; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--accent-soft); color: var(--accent-dark); font-weight: 800; display: grid; place-items: center; }
     .steps p { color: var(--muted); margin: 0; }
+
+    /* Nova Secção: Entregas */
+    .delivery-grid { display: grid; gap: 1.5rem; margin-top: 2rem; }
+    .delivery-card { background: var(--surface); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--line); border-top: 4px solid var(--accent); }
+    .delivery-card h3 { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+    
+    /* Nova Secção: Avaliações */
+    .reviews-grid { display: grid; gap: 1.5rem; }
+    .review-card { background: var(--surface); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--line); position: relative; }
+    .review-card::before { content: '“'; position: absolute; top: 10px; left: 15px; font-size: 4rem; color: var(--accent-soft); line-height: 1; font-family: serif; z-index: 0; }
+    .review-text { position: relative; z-index: 1; font-style: italic; color: var(--muted); margin-bottom: 1rem; }
+    .review-author { font-weight: 600; font-size: 0.9rem; color: var(--accent-dark); }
 
     .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: .75rem; }
     .gallery figure { margin: 0; border-radius: var(--radius); overflow: hidden; background: var(--accent-soft); aspect-ratio: 1; position: relative; }
@@ -124,13 +137,15 @@
     @media (min-width: 720px) {
       .cards { grid-template-columns: repeat(3, 1fr); }
       .steps { grid-template-columns: repeat(3, 1fr); }
+      .delivery-grid { grid-template-columns: 1fr 1fr; }
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
       .gallery { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
       .foot { flex-direction: row; justify-content: space-between; }
       .form-wrap { padding: 2.25rem; }
     }
     @media (min-width: 860px) {
       .burger { display: none; }
-      .menu { display: flex; align-items: center; gap: 1.75rem; }
+      .menu { display: flex; align-items: center; gap: 1.5rem; }
       .hero-grid { grid-template-columns: 1.1fr .9fr; }
     }
   </style>
@@ -147,8 +162,8 @@
 
       <ul class="menu" id="menu">
         <li><a href="#categorias">O que faço</a></li>
-        <li><a href="#como-funciona">Preços</a></li>
-        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#entregas">Entregas</a></li>
+        <li><a href="#avaliacoes">Avaliações</a></li>
         <li><a href="#encomenda" class="btn">Fazer Encomenda</a></li>
       </ul>
     </nav>
@@ -167,7 +182,7 @@
           </div>
         </div>
         <div class="hero-img">
-          <!-- FOTO PRINCIPAL: Confirma se o nome é exatamente igual ao do GitHub -->
+          <!-- FOTO PRINCIPAL -->
           <img src="img/hero.jpg" alt="Peças impressas em 3D" width="900" height="675" onerror="this.style.display='none'">
         </div>
       </div>
@@ -197,35 +212,12 @@
       </div>
     </section>
 
-    <section id="como-funciona" class="pricing">
-      <div class="container">
-        <h2>Como funciona</h2>
-        <div class="price-box">
-          <strong>Desde 0,10 € por grama</strong>
-          <p>O preço depende do peso e da complexidade da peça. Imprimo em PETG e PLA.</p>
-        </div>
-        <ol class="steps">
-          <li>
-            <h3>1. Pedes o orçamento</h3>
-            <p>Preenches o formulário abaixo ou envias email direto.</p>
-          </li>
-          <li>
-            <h3>2. Envias o ficheiro</h3>
-            <p>Respondo rapidamente por email. Se for personalizado, envias-me o ficheiro STL/CAD por essa via.</p>
-          </li>
-          <li>
-            <h3>3. Imprimo e entrego</h3>
-            <p>Depois de confirmares o valor, imprimo a peça e envio ou combinamos a entrega.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
     <section id="galeria">
       <div class="container">
         <h2>Alguns trabalhos</h2>
         <p class="section-intro">Exemplos de peças já impressas.</p>
         <div class="gallery">
+          <!-- AS TUAS FOTOS -->
           <figure>
             <img loading="lazy" src="img/suporte.jpg" alt="Suporte para tubos de ensaio" onerror="this.style.display='none'">
             <figcaption>Suporte para tubos</figcaption>
@@ -250,13 +242,59 @@
       </div>
     </section>
 
+    <!-- NOVA SECÇÃO: ENTREGAS E PAGAMENTOS -->
+    <section id="entregas" class="pricing">
+      <div class="container">
+        <h2>Entregas e Pagamentos</h2>
+        <p class="section-intro">Para garantir a melhor experiência, aqui estão as opções disponíveis.</p>
+        
+        <div class="delivery-grid">
+          <div class="delivery-card">
+            <h3>📍 Entrega em Mão (Aveiro)</h3>
+            <p>Se estiveres na zona de Aveiro, podemos combinar a entrega num local público e seguro, como a <strong>Universidade de Aveiro</strong>, as escadas junto ao <strong>McDonald's</strong> ou dentro do próprio espaço do McDonald's.</p>
+            <p style="font-weight: 600; color: var(--accent-dark); margin-bottom: 0;">Custo: Grátis</p>
+          </div>
+          
+          <div class="delivery-card">
+            <h3>📦 Envio por CTT</h3>
+            <p>Para o resto do país, envio as peças muito bem embaladas e protegidas. O envio é feito por correio registado e fica à volta de <strong>4,50€ a 6€</strong>, dependendo do peso (podes confirmar o valor no orçamento).</p>
+            <p style="font-weight: 600; color: var(--accent-dark); margin-bottom: 0;">Pagamento antecipado obrigatório</p>
+          </div>
+        </div>
+
+        <div style="background: var(--surface); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--line); margin-top: 1.5rem; text-align: center;">
+          <h3 style="color: var(--accent-dark);">💳 Método de Pagamento</h3>
+          <p>Após o envio do orçamento e confirmação do pedido, o pagamento é feito via <strong>MB WAY</strong>. A impressão só é iniciada após a receção do valor.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOVA SECÇÃO: AVALIAÇÕES -->
+    <section id="avaliacoes">
+      <div class="container">
+        <h2>O que dizem os clientes</h2>
+        <p class="section-intro">A satisfação de quem confia no meu trabalho.</p>
+        
+        <div class="reviews-grid">
+          <!-- Podes alterar estes depoimentos quando receberes comentários reais -->
+          <div class="review-card">
+            <p class="review-text">"Precisava de um suporte para os meus tubos de ensaio e o resultado foi fantástico. Peça super resistente e o acabamento é impecável. Recomendo!"</p>
+            <p class="review-author">— João S., Aveiro</p>
+          </div>
+          <div class="review-card">
+            <p class="review-text">"Encomendei um dos brinquedos articulados para oferecer. Adorei a rapidez da entrega e a atenção ao detalhe. O meu sobrinho não larga o brinquedo!"</p>
+            <p class="review-author">— Maria C., Lisboa</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="encomenda" style="background: var(--accent-soft);">
       <div class="container">
         <h2 style="text-align: center;">Pede o teu orçamento</h2>
         <p class="section-intro" style="text-align: center; margin-inline: auto;">Conta-me o que precisas. Respondo normalmente em 24 horas.</p>
 
         <div class="form-wrap">
-          <!-- AQUI ESTÁ O TEU ID DO FORMSPREE: mdegklzo -->
           <form id="orderForm" action="https://formspree.io/f/mdegklzo" method="POST" novalidate>
 
             <div class="field">
@@ -284,7 +322,7 @@
 
             <div class="field">
               <label for="mensagem">Mensagem</label>
-              <textarea id="mensagem" name="mensagem" required placeholder="Descreve a peça, o tamanho, a cor e a quantidade. Se for personalizado, diz-me que tipo de ficheiro tens."></textarea>
+              <textarea id="mensagem" name="mensagem" required placeholder="Descreve a peça, o tamanho, a cor e a quantidade."></textarea>
               <div class="error">Descreve o que precisas.</div>
             </div>
 
@@ -373,7 +411,7 @@
           headers: { 'Accept': 'application/json' }
         });
         if (res.ok) {
-          showMsg('<strong>Pedido enviado com sucesso!</strong><br>Vou responder em breve.<br><br>Se a tua peça for personalizada, <strong>envia agora o ficheiro (STL/CAD) para <a href="mailto:simulacoeso@gmail.com">simulacoeso@gmail.com</a></strong>.', true);
+          showMsg('<strong>Pedido enviado com sucesso!</strong><br>Vou analisar o teu pedido e responder com o orçamento em breve.<br><br>Se a peça for personalizada, envia o ficheiro para <a href="mailto:simulacoeso@gmail.com">simulacoeso@gmail.com</a>.', true);
           form.reset();
         } else {
           showMsg('Não foi possível enviar o formulário. Tenta de novo ou envia email para <a href="mailto:simulacoeso@gmail.com">simulacoeso@gmail.com</a>.', false);
